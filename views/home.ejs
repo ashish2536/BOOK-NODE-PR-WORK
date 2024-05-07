@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            background-color: #BFCFE7;
+        }
+        h1{
+            text-align: center;
+        }
+        .btn{
+            height: 24px;
+            width: 70px;
+            color: black;
+            font-weight:600;
+            border-radius: 5px;
+        }
+        .btn:hover{
+            transform: skew(0deg ,-3deg);
+            background-image: linear-gradient(white,white);
+        }
+    </style>
+</head>
+<body>
+    <form action="/insertHomeData" method="post" enctype="multipart/form-data">
+        <table border="1" align="center">
+            <tr>
+                
+                <td>Title</td>
+                <td><input type="text" name="title"></td>
+            </tr>
+
+            <tr>
+                <td>author</td>
+                <td><input type="text" name="author"></td>
+            </tr>
+
+            <tr>
+                <td>Price</td>
+                <td><input type="text" name="price"></td>
+            </tr>
+
+            <tr>
+                <td>Old Price</td>
+                <td><input type="text" name="oprice"></td>
+            </tr>
+
+            <tr>
+                <td>Type</td>
+                <td>
+                    <input type="checkbox" name="type" value="song"> Horror
+                    <input type="checkbox" name="type" value="game"> Commedy
+                    <input type="checkbox" name="type" value="coding"> Romance
+                </td>
+                </td>
+            </tr>
+
+            <tr>
+                <td>enter gender</td>
+                <td>
+                    <input type="radio" name="gender" value="male"> male
+                    <input type="radio" name="gender" value="female">Female
+                </td>
+            </tr>
+
+            
+
+            <% var city=["surat", "rajkot","ahmedabad","vadodara"] %>
+            <tr>
+                <td>enter city</td>
+                <td>
+                    <select name="city">
+                        <option value="">--section city--</option>
+                        <% city.map((v,i)=>{ %>
+                            <option value="<%= v %>"><%= v %></option>
+                        <% }) %>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="file" name="image">
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" class="btn"></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+
+    <table border="1" align="center" class="table">
+        <tr>
+            <td>title</td>
+            <td>author</td>
+            <td>price</td>
+            <td>Old price</td>
+            <td>type</td>
+            <td>gender</td>
+            <td>city</td>
+            <td>image</td>
+            <td>delet & update</td>
+        </tr>
+        <% for(var r of person){ %>
+            <tr>
+                <td><%= r.title %></td>
+                <td><%= r.author %></td>
+                <td><%= r.price %></td>
+                <td><%= r.oprice %></td>
+                <td><%= r.hobby %></td>
+                <td><%= r.gender %></td>
+                <td><%= r.city %></td>
+                <td>
+                    <img src="<%= r.image %>" alt="" height="100">
+                </td>
+                <td>
+                    <a href="/daletRecord/<%= r.id %>">delet</a>
+                    ||
+                    <a href="/updateRecord?id=<%= r.id %>" >update</a>
+                </td>
+                
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>

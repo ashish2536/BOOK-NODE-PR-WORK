@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <style>
+        body{
+            background-color: #F3E8FF;
+        }
+        h1{
+            text-align: center;
+        }
+        .btn{
+            height: 24px;
+            width: 70px;
+            background-image: linear-gradient( rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            color: black;
+            font-weight:600;
+            border-radius: 5px;
+            transition: all 0.4s linear;
+        }
+        .btn:hover{
+            transform: skew(0deg ,-3deg);
+            background-image: linear-gradient(white,white);
+        }
+    </style>
+</head>
+<body>
+    <h1>Update page</h1>
+    <form action="/EditHomeData" method="post">
+
+        <input type="hidden" name="id" value="<%= empData.id %>">
+
+        <table border="1" align="center">
+            <tr>
+                <td>name</td>
+                <td><input type="text" name="name" value="<%= empData.name %>"></td>
+            </tr>
+    
+            <tr>
+                <td>age</td>
+                <td><input type="text" name="age" value="<%= empData.age %>"></td>
+            </tr>
+    
+            <tr>
+                <td>phone</td>
+                <td><input type="text" name="phone" value="<%= empData.phone %>"></td>
+            </tr>
+
+            
+
+            <tr>
+                <td>gender</td>
+                <td>
+                    <input type="radio" name="gender" value="male" <% if(empData.gender == 'male') { %><%= 'checked'%><% } %>> male
+                    <input type="radio" name="gender" value="female" <% if(empData.gender == 'female') { %><%= 'checked'%><% } %>>Female
+                </td>
+            </tr>
+
+            <tr>
+                <td>Hobby</td>
+                
+                <td>
+                    <input type="checkbox" name="hobby" value="song" <% if(empData.hobby.includes('song')){ %><%= 'checked' %><% } %> > song
+                    <input type="checkbox" name="hobby" value="game" <% if(empData.hobby.includes('game')){ %><%= 'checked' %><% } %>>game
+                    <input type="checkbox" name="hobby" value="coding" <% if(empData.hobby.includes('coding')){ %><%= 'checked' %><% } %>> coding
+                </td>
+                </td>
+            </tr>
+
+            <% var city=["surat", "rajkot","ahmedabad","vadodara"] %>
+            <tr>
+                <td>Select City</td>
+                <td>
+                    
+                    <select name="city">
+                        <option value="">--section city--</option>
+                        <% city.map((v,i)=>{ %>
+                            <option value="<%= v %>" <% if(empData.city==v){ %><%= 'selected' %> <%}%> ><%= v %></option>
+                        <% }) %>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="file" name="image" value="<%= empData.image %>">
+                </td>
+            </tr>
+    
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Update" class="btn"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
